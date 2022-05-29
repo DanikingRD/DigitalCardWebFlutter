@@ -13,10 +13,10 @@ class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxHeight: 200,
-        maxWidth: 400,
-      ),
+      // A Notification Card can only have a max width of 500,
+      // Which is the default minimum width size for browsers
+      // And fits mobile screen
+      constraints: const BoxConstraints(maxWidth: 500, minWidth: 400),
       child: Card(
         color: kNotificationCardColor,
         child: Padding(
@@ -24,17 +24,18 @@ class NotificationCard extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Text(
+                child: SelectableText(
                   message,
                   style: const TextStyle(
-                    fontSize: 18,
-                    wordSpacing: 2.0,
+                    fontSize: 16,
+                    color: kGreyText,
+                    height: 1.7,
                   ),
                 ),
               ),
               IconButton(
                 onPressed: close,
-                icon: const Icon(Icons.close),
+                icon: const Icon(Icons.close_sharp, size: 20),
               )
             ],
           ),

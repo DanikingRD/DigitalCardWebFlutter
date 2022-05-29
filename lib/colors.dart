@@ -1,4 +1,8 @@
 import 'package:flutter/painting.dart';
 
-const kPrimaryColor = Color.fromRGBO(233, 56, 53, 1);
-const kNotificationCardColor = Color.fromRGBO(251, 199, 198, 1);
+const Color kPrimaryColor = Color.fromRGBO(244, 90, 87, 1);
+const Color kPrimaryHoverColor = Color.fromARGB(255, 221, 119, 117);
+const Color kSecondaryColor = Color.fromRGBO(249, 161, 159, 1);
+const Color kNotificationCardColor = Color.fromRGBO(251, 199, 198, 1);
+const Color kGreyText = Color.fromRGBO(53, 57, 59, 1);
+const Color kOutlineBorderColor = Color.fromRGBO(172, 185, 190, 1); // acb9be
