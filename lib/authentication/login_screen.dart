@@ -50,11 +50,6 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
@@ -89,18 +84,16 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle style = TextStyle(color: Colors.black);
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.white,
         title: Row(
           children: [
             const Spacer(),
-            const Text(
+            Text(
               'Company Logo',
-              style: style,
+              style: textTheme.bodyLarge,
             ),
             const Spacer(
               flex: 2,
@@ -110,9 +103,15 @@ class _LoginScreenState extends State<LoginScreen>
               style: TextButton.styleFrom(
                 primary: Colors.black,
               ),
-              child: const Text(
-                "Sign Up",
-                style: TextStyle(fontSize: 18),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 6,
+                  horizontal: 16,
+                ),
+                child: Text(
+                  "Sign Up",
+                  style: textTheme.bodyLarge,
+                ),
               ),
             ),
             const Spacer(),
@@ -131,14 +130,10 @@ class _LoginScreenState extends State<LoginScreen>
                   const SizedBox(
                     height: 120,
                   ),
-                  const Center(
+                  Center(
                     child: SelectableText(
                       'Login',
-                      style: TextStyle(
-                        color: kGreyText,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 44,
-                      ),
+                      style: textTheme.headlineLarge,
                     ),
                   ),
                   const SizedBox(
