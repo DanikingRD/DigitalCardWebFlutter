@@ -3,6 +3,23 @@ import 'package:firebase_auth/firebase_auth.dart';
 class FirebaseAuthService {
   final FirebaseAuth _instance = FirebaseAuth.instance;
 
+  Future<void> sendResetPasswordLink({
+    required String email,
+    Function(String? message)? onError,
+    Function()? onSuccess,
+  }) async {
+    try {
+      await _instance.sendPasswordResetEmail(email: email);
+      if (onSuccess != null) {
+        onSuccess();
+      }
+    } on FirebaseAuthException catch (e) {
+      if (onError != null) {
+        onError(e.message);
+      }
+    }
+  }
+
   Future<void> logIn({
     required String email,
     required String password,

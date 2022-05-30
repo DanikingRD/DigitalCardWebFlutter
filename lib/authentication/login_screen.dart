@@ -163,12 +163,18 @@ class _LoginScreenState extends State<LoginScreen>
                       opacity: _opacity,
                       child: ResetPasswordBody(
                         emailController: _emailController,
+                        onError: (error) {
+                          setState(() {
+                            _errorMessage = error;
+                          });
+                        },
                         onReturn: () {
                           setState(() {
                             _resetPassword = false;
                             _fadeController.forward(from: 0.0);
                           });
                         },
+                        authInstance: _authInstance,
                       ),
                     )
                   } else ...{
