@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:digital_card_website/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,7 @@ class PrimaryButton extends StatefulWidget {
   final Color enabledColor;
 
   /// Color for when this button is disabled.
-  final Color disabledColor;
+  final Color? disabledColor;
 
   /// Optional color when [isEnabled] and hovering.
   final Color? hoverColor;
@@ -27,7 +26,7 @@ class PrimaryButton extends StatefulWidget {
     required this.text,
     required this.isEnabled,
     required this.enabledColor,
-    required this.disabledColor,
+    this.disabledColor,
     this.hoverColor,
     this.content,
   }) : super(key: key);
@@ -67,8 +66,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
           ),
           onPressed: widget.onClick,
           child: widget.content ??
-              AutoSizeText(
-                maxLines: 1,
+              Text(
                 widget.text,
                 style: TextStyle(
                   color:
@@ -98,7 +96,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
 
   Color getBackgroundColor() {
     if (!widget.isEnabled()) {
-      return widget.disabledColor;
+      return widget.disabledColor ?? widget.enabledColor;
     } else {
       if (_hovered && widget.hoverColor != null) {
         return widget.enabledColor.withOpacity(0.77);

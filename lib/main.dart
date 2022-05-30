@@ -18,14 +18,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final family = GoogleFonts.merriweather().fontFamily;
-    final headlineLarge = TextStyle(
-      color: kGreyText,
-      fontSize: 44,
-      fontFamily: family,
-      fontWeight: FontWeight.w600,
-    );
+
     return MaterialApp(
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           color: Colors.transparent,
           elevation: 0.0,
@@ -45,8 +41,8 @@ class App extends StatelessWidget {
           ),
           bodyLarge: TextStyle(
             fontSize: 16,
+            height: 1.7,
             fontFamily: family,
-            fontWeight: FontWeight.w600,
           ),
         ),
         // Disable default splash effects

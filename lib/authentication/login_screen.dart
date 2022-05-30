@@ -86,7 +86,6 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Row(
           children: [

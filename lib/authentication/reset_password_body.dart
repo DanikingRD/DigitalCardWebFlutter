@@ -65,7 +65,6 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
                       : null,
                   isEnabled: () => true,
                   enabledColor: kPrimaryColor,
-                  disabledColor: kPrimaryColor,
                 ),
               ),
             ],

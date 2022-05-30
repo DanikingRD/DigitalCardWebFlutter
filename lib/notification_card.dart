@@ -26,11 +26,7 @@ class NotificationCard extends StatelessWidget {
               Expanded(
                 child: SelectableText(
                   message,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: kGreyText,
-                    height: 1.7,
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
               IconButton(
