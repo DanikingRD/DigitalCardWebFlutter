@@ -16,6 +16,9 @@ class PrimaryButton extends StatefulWidget {
   /// Optional color when [isEnabled] and hovering.
   final Color? hoverColor;
 
+  /// Optional widget for loading indicator or custom text
+  final Widget? content;
+
   /// A [PrimaryButton] can animate the color changes.
   const PrimaryButton({
     Key? key,
@@ -25,6 +28,7 @@ class PrimaryButton extends StatefulWidget {
     required this.enabledColor,
     required this.disabledColor,
     this.hoverColor,
+    this.content,
   }) : super(key: key);
 
   @override
@@ -56,13 +60,19 @@ class _PrimaryButtonState extends State<PrimaryButton> {
         onEnter: ((_) => onHoverUpdate(true)),
         onExit: ((_) => onHoverUpdate(false)),
         child: TextButton(
-          onPressed: widget.onClick,
-          child: Text(
-            widget.text,
-            style: TextStyle(
-              color: widget.isEnabled() ? Colors.white : kOutlineBorderColor,
-            ),
+          style: ButtonStyle(
+            // No color splash
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
           ),
+          onPressed: widget.onClick,
+          child: widget.content ??
+              Text(
+                widget.text,
+                style: TextStyle(
+                  color:
+                      widget.isEnabled() ? Colors.white : kOutlineBorderColor,
+                ),
+              ),
         ),
       ),
     );

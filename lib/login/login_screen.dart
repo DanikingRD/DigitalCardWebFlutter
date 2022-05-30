@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digital_card_website/backend/authentication.dart';
 import 'package:digital_card_website/colors.dart';
-import 'package:digital_card_website/main.dart';
 import 'package:digital_card_website/notification_card.dart';
 import 'package:digital_card_website/primary_button.dart';
 import 'package:digital_card_website/primary_textfield.dart';
+import 'package:digital_card_website/three_bounce_loading_indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -16,36 +15,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // Authentication service
   final FirebaseAuthService _authInstance = FirebaseAuthService();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // Textfield controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  // LoginScreen state
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String? _errorMessage;
   bool _passwordHidden = true;
   bool _validEmail = false;
-
   bool _validPassword = false;
   bool _next = false;
-
-  @override
-  void initState() {
-    super.initState();
-    getUser();
-  }
+  bool _loading = false;
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
-  }
-
-  void getUser() async {
-    final query = await _firestore.collection('users').snapshots().first;
-    for (var doc in query.docs) {
-      print(doc.data());
-    }
   }
 
   Future<void> logIn() async {
@@ -60,15 +48,14 @@ class _LoginScreenState extends State<LoginScreen> {
           context: context,
           builder: (ctx) {
             return const AlertDialog(
-              content: Text("Successfully logged in as"),
+              content: Text("Successfully logged in"),
             );
           },
         );
       },
       onError: (String? msg) {
         setState(() {
-          _errorMessage =
-              "There is no Blinq account associated with this email address. Click the sign up button to create a new account instead.";
+          _errorMessage = msg;
         });
       },
     );
@@ -82,22 +69,29 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        title: const Text(
-          'Company Logo',
-          style: style,
+        title: Row(
+          children: [
+            const Spacer(),
+            const Text(
+              'Company Logo',
+              style: style,
+            ),
+            const Spacer(
+              flex: 2,
+            ),
+            TextButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                primary: Colors.black,
+              ),
+              child: const Text(
+                "Sign Up",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            const Spacer(),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              primary: Colors.black,
-            ),
-            child: const Text(
-              "Sign Up",
-              style: TextStyle(fontSize: 18),
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 32, right: 32),
@@ -122,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 32,
+                    height: 50,
                   ),
                   if (_errorMessage != null) ...{
                     NotificationCard(
@@ -209,6 +203,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         enabledColor: kPrimaryColor,
                         hoverColor: kPrimaryHoverColor,
                         disabledColor: Colors.white,
+                        content: _loading
+                            ? const ThreeBounceLoadingIndicator(
+                                color: Colors.white,
+                                size: 20.0,
+                              )
+                            : null,
                         isEnabled: () {
                           // First we chick if email is there
                           if (!_next) {
@@ -226,7 +226,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           } else {
                             if (_validEmail && _next && _validPassword) {
+                              setState(() {
+                                _loading = true;
+                              });
                               await logIn();
+                              setState(() {
+                                _loading = false;
+                              });
                             }
                           }
                         },
