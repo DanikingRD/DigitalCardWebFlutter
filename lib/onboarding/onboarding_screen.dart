@@ -19,49 +19,54 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context);
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Row(
         children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 46),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Text(
-                      'Company Logo',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    Spacer(),
-                    Text(
-                      "Let's go!",
-                      style: TextStyle(color: Colors.white, fontSize: 40),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Text(
-                      "Create your digital business card in under 2 minutes and take your networking to the next level",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+          if (size.width > 900) ...{
+            Expanded(
+              flex: 2,
+              child: Container(
+                color: kPrimaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 46),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      SizedBox(
+                        height: 40,
                       ),
-                    ),
-                    Spacer(),
-                  ],
+                      Text(
+                        'Company Logo',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      Spacer(),
+                      Text(
+                        "Let's go!",
+                        style: TextStyle(color: Colors.white, fontSize: 40),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        "Create your digital business card in under 2 minutes and take your networking to the next level",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            width: 70,
-          ),
+          },
+          if (size.width > 900) ...{
+            const SizedBox(
+              width: 70,
+            ),
+          },
           Expanded(
             flex: 3,
             child: Theme(
@@ -74,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               child: Stepper(
                 elevation: 0.0,
-                type: StepperType.horizontal,
+                type: StepperType.vertical,
                 currentStep: activeState,
                 physics: const NeverScrollableScrollPhysics(),
                 onStepTapped: null,
@@ -159,7 +164,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           ),
-          Expanded(child: Container()),
+          if (size.width > 900) ...{
+            Expanded(child: Container()),
+          }
         ],
       ),
     );
