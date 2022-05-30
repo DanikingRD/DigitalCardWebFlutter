@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:digital_card_website/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -66,7 +67,8 @@ class _PrimaryButtonState extends State<PrimaryButton> {
           ),
           onPressed: widget.onClick,
           child: widget.content ??
-              Text(
+              AutoSizeText(
+                maxLines: 1,
                 widget.text,
                 style: TextStyle(
                   color:

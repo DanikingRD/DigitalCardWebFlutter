@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class NotificationCard extends StatelessWidget {
   final String message;
-  VoidCallback close;
-  NotificationCard({
+  final VoidCallback close;
+  const NotificationCard({
     Key? key,
     required this.message,
     required this.close,

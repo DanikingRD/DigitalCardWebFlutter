@@ -1,4 +1,4 @@
-import 'package:digital_card_website/login/login_screen.dart';
+import 'package:digital_card_website/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        textTheme: GoogleFonts.soraTextTheme(),
+        textTheme: GoogleFonts.merriweatherTextTheme(),
         // Disable default splash effects
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
