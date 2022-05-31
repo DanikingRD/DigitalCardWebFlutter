@@ -9,7 +9,7 @@ class PrimaryTextField extends StatelessWidget {
   final bool hiddenText;
   final Widget? suffixIcon;
   final ValueChanged<String>? onUpdate;
-
+  final ValueChanged<String>? onFieldSubmitted;
   const PrimaryTextField({
     Key? key,
     this.controller,
@@ -19,6 +19,7 @@ class PrimaryTextField extends StatelessWidget {
     this.hiddenText = false,
     this.suffixIcon,
     this.onUpdate,
+    this.onFieldSubmitted,
   }) : super(key: key);
 
   @override
@@ -33,6 +34,7 @@ class PrimaryTextField extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       cursorColor: Colors.black,
       cursorWidth: 1.0,
+      onFieldSubmitted: onFieldSubmitted,
       controller: controller,
       validator: validator,
       onChanged: onUpdate,

@@ -1,6 +1,6 @@
 import 'package:digital_card_website/authentication/login_screen.dart';
 import 'package:digital_card_website/colors.dart';
-import 'package:digital_card_website/onboarding/onboarding_screen.dart';
+import 'package:digital_card_website/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,31 +27,31 @@ class App extends StatelessWidget {
           elevation: 0.0,
         ),
         brightness: Brightness.light,
-        textTheme: GoogleFonts.merriweatherTextTheme().copyWith(
-          headlineLarge: TextStyle(
-            color: kGreyText,
-            fontSize: 44,
-            fontFamily: family,
-            fontWeight: FontWeight.w600,
-          ),
-          headlineMedium: const TextStyle(
-            color: kGreyText,
-            fontSize: 34,
-            fontWeight: FontWeight.w600,
-          ),
-          bodyLarge: TextStyle(
-            fontSize: 16,
-            height: 1.7,
-            fontFamily: family,
-          ),
-        ),
+        textTheme: GoogleFonts.mulishTextTheme().apply().copyWith(
+              headlineLarge: TextStyle(
+                color: kGreyText,
+                fontSize: 44,
+                fontFamily: family,
+                fontWeight: FontWeight.w600,
+              ),
+              headlineMedium: const TextStyle(
+                color: kGreyText,
+                fontSize: 34,
+                fontWeight: FontWeight.w600,
+              ),
+              bodyLarge: TextStyle(
+                fontSize: 16,
+                height: 1.7,
+                fontFamily: family,
+              ),
+            ),
         // Disable default splash effects
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         hoverColor: Colors.transparent,
       ),
       debugShowCheckedModeBanner: false,
-      home: const OnboardingScreen(),
+      home: HomeScreen(),
     );
   }
 }

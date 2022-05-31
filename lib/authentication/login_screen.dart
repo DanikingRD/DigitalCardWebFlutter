@@ -275,7 +275,6 @@ class _LoginScreenState extends State<LoginScreen>
               child: PrimaryButton(
                 text: _next ? 'Log in' : 'Next',
                 enabledColor: kPrimaryColor,
-                hoverColor: kPrimaryHoverColor,
                 disabledColor: Colors.white,
                 content: _loading
                     ? const ThreeBounceLoadingIndicator(

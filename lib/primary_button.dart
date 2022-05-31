@@ -13,9 +13,6 @@ class PrimaryButton extends StatefulWidget {
   /// Color for when this button is disabled.
   final Color? disabledColor;
 
-  /// Optional color when [isEnabled] and hovering.
-  final Color? hoverColor;
-
   /// Optional widget for loading indicator or custom text
   final Widget? content;
 
@@ -27,7 +24,6 @@ class PrimaryButton extends StatefulWidget {
     required this.isEnabled,
     required this.enabledColor,
     this.disabledColor,
-    this.hoverColor,
     this.content,
   }) : super(key: key);
 
@@ -98,7 +94,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
     if (!widget.isEnabled()) {
       return widget.disabledColor ?? widget.enabledColor;
     } else {
-      if (_hovered && widget.hoverColor != null) {
+      if (_hovered) {
         return widget.enabledColor.withOpacity(0.77);
       } else {
         return widget.enabledColor;
