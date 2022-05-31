@@ -1,10 +1,12 @@
 import 'package:digital_card_website/colors.dart';
 import 'package:digital_card_website/primary_textfield.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:digital_card_website/util.dart';
 import 'package:flutter/material.dart';
 
 class PersonalDetailsStep extends StatefulWidget {
-  const PersonalDetailsStep({Key? key}) : super(key: key);
+  const PersonalDetailsStep({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PersonalDetailsStep> createState() => _PersonalDetailsStepState();
@@ -17,6 +19,7 @@ class _PersonalDetailsStepState extends State<PersonalDetailsStep> {
   final TextEditingController _phoneNumber = TextEditingController();
   final TextEditingController _companyName = TextEditingController();
   final TextEditingController _email = TextEditingController();
+  final GlobalKey<FormState> _userDetails = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -32,83 +35,104 @@ class _PersonalDetailsStepState extends State<PersonalDetailsStep> {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
-    return Align(
-      alignment: Alignment.topLeft,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SelectableText(
-            'Create your first card',
-            style: textStyle.headlineMedium,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: SizedBox(
-              width: 580,
-              child: SelectableText(
-                "You can add over 20 fields to your [Company] card including your socials, website, branding and more. First, let's start with your core details.",
-                style: textStyle.bodyLarge,
+    return Form(
+      key: _userDetails,
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SelectableText(
+              'Create your first card',
+              style: textStyle.headlineMedium,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: SizedBox(
+                width: 580,
+                child: SelectableText(
+                  "You can add over 20 fields to your [Company] card including your socials, website, branding and more. First, let's start with your core details.",
+                  style: textStyle.bodyLarge,
+                ),
               ),
             ),
-          ),
-          const _FieldHeader(
-            title: "Name",
-            icon: Icons.account_circle_outlined,
-          ),
-          _fieldRow(
-            first: const PrimaryTextField(
-              label: 'First Name',
+            const _FieldHeader(
+              title: "Name",
+              icon: Icons.account_circle_outlined,
             ),
-            second: const PrimaryTextField(
-              label: 'Last Name',
-            ),
-          ),
-          const _FieldHeader(
-            title: "Job title",
-            icon: Icons.work,
-          ),
-          _fieldRow(
-            first: const PrimaryTextField(label: 'Job Title'),
-            second: const PrimaryTextField(label: 'Phone Number'),
-          ),
-          const _FieldHeader(
-            title: "Company Name",
-            icon: Icons.apartment,
-          ),
-          const PrimaryTextField(label: 'Company Name'),
-          const _FieldHeader(
-            title: "Email",
-            icon: Icons.email,
-          ),
-          const PrimaryTextField(label: 'Email'),
-          const SizedBox(
-            height: 26,
-          ),
-          const Center(
-            child: SelectableText.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'By continuing, you agree to our ',
-                  ),
-                  TextSpan(
-                    text: 'Privacy Policy ',
-                    style: TextStyle(color: kActiveStepColorText),
-                  ),
-                  TextSpan(text: 'and '),
-                  TextSpan(
-                    text: 'Terms of Service',
-                    style: TextStyle(color: kActiveStepColorText),
-                  )
-                ],
+            _fieldRow(
+              first: PrimaryTextField(
+                label: 'First Name',
+                validator: (String? text) {
+                  if (text!.isEmpty) {
+                    return 'First name is required';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              second: const PrimaryTextField(
+                label: 'Last Name',
               ),
             ),
-          ),
-          // Leave space for the button
-          const SizedBox(
-            height: 32,
-          ),
-        ],
+            const _FieldHeader(
+              title: "Job title",
+              icon: Icons.work,
+            ),
+            _fieldRow(
+              first: const PrimaryTextField(label: 'Job Title'),
+              second: const PrimaryTextField(label: 'Phone Number'),
+            ),
+            const _FieldHeader(
+              title: "Company Name",
+              icon: Icons.apartment,
+            ),
+            const PrimaryTextField(label: 'Company Name'),
+            const _FieldHeader(
+              title: "Email",
+              icon: Icons.email,
+            ),
+            PrimaryTextField(
+              label: 'Email',
+              validator: (String? text) {
+                if (text!.isEmpty) {
+                  return 'Email is required';
+                } else if (!isEmailValid(text)) {
+                  return "This email address isn't valid";
+                } else {
+                  return null;
+                }
+              },
+            ),
+            const SizedBox(
+              height: 26,
+            ),
+            const Center(
+              child: SelectableText.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'By continuing, you agree to our ',
+                    ),
+                    TextSpan(
+                      text: 'Privacy Policy ',
+                      style: TextStyle(color: kActiveStepColorText),
+                    ),
+                    TextSpan(text: 'and '),
+                    TextSpan(
+                      text: 'Terms of Service',
+                      style: TextStyle(color: kActiveStepColorText),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            // Leave space for the button
+            const SizedBox(
+              height: 32,
+            ),
+          ],
+        ),
       ),
     );
   }

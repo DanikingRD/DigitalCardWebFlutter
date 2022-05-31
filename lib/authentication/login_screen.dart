@@ -6,6 +6,7 @@ import 'package:digital_card_website/primary_button.dart';
 import 'package:digital_card_website/primary_textfield.dart';
 import 'package:digital_card_website/secondary_button.dart';
 import 'package:digital_card_website/three_bounce_loading_indicator.dart';
+import 'package:digital_card_website/util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -315,12 +316,6 @@ class _LoginScreenState extends State<LoginScreen>
         )
       ],
     );
-  }
-
-  bool isEmailValid(String? val) {
-    return RegExp(
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-        .hasMatch(val!);
   }
 
   bool isValidPassword(String? val) {

@@ -12,6 +12,8 @@ class OnboardingScreen extends StatefulWidget {
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
+typedef StepValidator = bool Function();
+
 class _OnboardingScreenState extends State<OnboardingScreen> {
   int activeState = 0;
   static const _stepslength = 4;

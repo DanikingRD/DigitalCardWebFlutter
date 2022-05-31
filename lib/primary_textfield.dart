@@ -42,6 +42,7 @@ class PrimaryTextField extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         contentPadding: const EdgeInsets.all(12),
+        errorMaxLines: 1,
         errorStyle: const TextStyle(
           color: kSecondaryColor,
           fontSize: 12,
