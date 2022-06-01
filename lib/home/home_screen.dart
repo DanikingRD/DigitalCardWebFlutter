@@ -1,5 +1,7 @@
+import 'package:digital_card_website/home/widgets/header_text.dart';
 import 'package:digital_card_website/home/widgets/side_menu.dart';
 import 'package:digital_card_website/home/widgets/user_profile.dart';
+import 'package:digital_card_website/util.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,6 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             flex: 3,
@@ -16,13 +19,15 @@ class HomeScreen extends StatelessWidget {
               child: _buildSideBar(),
             ),
           ),
-          const Expanded(
+          Expanded(
             flex: 10,
-            child: SingleChildScrollView(),
+            child: _buildOverview(),
           ),
-          const Expanded(
+          Expanded(
             flex: 4,
-            child: SingleChildScrollView(),
+            child: SingleChildScrollView(
+              child: _buildCalendar(),
+            ),
           ),
         ],
       ),
@@ -30,9 +35,21 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+Widget _buildOverview() {
+  return Column(
+    children: [
+      const SizedBox(
+        height: 40,
+      ),
+      HeaderText(
+        text: getCurrentDate(DateTime.now()),
+      ),
+    ],
+  );
+}
+
 Widget _buildSideBar() {
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -59,5 +76,30 @@ Widget _buildSideBar() {
         height: 60,
       ),
     ],
+  );
+}
+
+Widget _buildCalendar() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            const Expanded(
+              child: HeaderText(text: 'Calendar'),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.calendar_month),
+              tooltip: 'calendar',
+            )
+          ],
+        )
+      ],
+    ),
   );
 }

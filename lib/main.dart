@@ -1,11 +1,11 @@
-import 'package:digital_card_website/authentication/login_screen.dart';
 import 'package:digital_card_website/colors.dart';
 import 'package:digital_card_website/home/home_screen.dart';
 import 'package:digital_card_website/provider/menu_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'firebase_options.dart';
 
 void main(List<String> args) async {
