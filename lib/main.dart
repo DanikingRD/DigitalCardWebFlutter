@@ -1,15 +1,22 @@
 import 'package:digital_card_website/authentication/login_screen.dart';
 import 'package:digital_card_website/colors.dart';
 import 'package:digital_card_website/home/home_screen.dart';
+import 'package:digital_card_website/provider/menu_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const App());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => MenuProvider(),
+      child: const App(),
+    ),
+  );
 }
 
 class App extends StatelessWidget {
@@ -29,13 +36,13 @@ class App extends StatelessWidget {
         brightness: Brightness.light,
         textTheme: GoogleFonts.mulishTextTheme().apply().copyWith(
               headlineLarge: TextStyle(
-                color: kGreyText,
+                color: kGreyTextColor,
                 fontSize: 44,
                 fontFamily: family,
                 fontWeight: FontWeight.w600,
               ),
               headlineMedium: const TextStyle(
-                color: kGreyText,
+                color: kGreyTextColor,
                 fontSize: 34,
                 fontWeight: FontWeight.w600,
               ),
@@ -45,10 +52,6 @@ class App extends StatelessWidget {
                 fontFamily: family,
               ),
             ),
-        // Disable default splash effects
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        hoverColor: Colors.transparent,
       ),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
