@@ -1,9 +1,9 @@
-import 'package:digital_card_website/colors.dart';
+import 'package:digital_card_website/constants.dart';
 import 'package:digital_card_website/routes.dart';
 import 'package:flutter/material.dart';
 
 class MenuProvider with ChangeNotifier {
-  String _activeRoute = Routes.overviewPageRoute;
+  String _activeRoute = Routes.homePageRoute;
   String? _hoveredRoute;
 
   void setActiveRoute(String route) {
@@ -23,7 +23,7 @@ class MenuProvider with ChangeNotifier {
 
   Widget getIconFor(String route) {
     switch (route) {
-      case Routes.overviewPageRoute:
+      case Routes.homePageRoute:
         return _icon(Icons.trending_up, route);
       case Routes.devicesPageRoute:
         return _icon(Icons.trending_up, route);

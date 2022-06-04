@@ -1,5 +1,6 @@
 import 'package:flutter/painting.dart';
 
+// Colors
 const Color kLightColor = Color(0xFFF7F8FC);
 const Color kPrimaryColor = Color.fromRGBO(244, 90, 87, 1);
 const Color kPrimaryLightColor = Color.fromRGBO(244, 90, 87, 1);
@@ -17,3 +18,11 @@ const List<Color> kFontColorPallets = [
   Color.fromRGBO(72, 76, 99, 1),
   Color.fromRGBO(149, 149, 163, 1),
 ];
+
+const kDashPrimaryColor = Color(0xFF2697FF);
+const kDashSecondaryColor = Color(0xFF2A2D3E);
+const kDashBgColor = Color(0xFF212332);
+
+// misc
+
+const defaultPadding = 16.0;

@@ -1,4 +1,4 @@
-import 'package:digital_card_website/colors.dart';
+import 'package:digital_card_website/constants.dart';
 import 'package:flutter/material.dart';
 
 class NotificationCard extends StatelessWidget {

@@ -1,12 +1,13 @@
 import 'package:digital_card_website/authentication/reset_password_body.dart';
 import 'package:digital_card_website/backend/authentication.dart';
-import 'package:digital_card_website/colors.dart';
-import 'package:digital_card_website/notification_card.dart';
-import 'package:digital_card_website/primary_button.dart';
-import 'package:digital_card_website/primary_textfield.dart';
-import 'package:digital_card_website/secondary_button.dart';
+import 'package:digital_card_website/constants.dart';
+
 import 'package:digital_card_website/three_bounce_loading_indicator.dart';
 import 'package:digital_card_website/util.dart';
+import 'package:digital_card_website/widgets/notification_card.dart';
+import 'package:digital_card_website/widgets/primary_button.dart';
+import 'package:digital_card_website/widgets/primary_textfield.dart';
+import 'package:digital_card_website/widgets/secondary_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
