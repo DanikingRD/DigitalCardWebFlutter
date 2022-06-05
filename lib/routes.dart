@@ -2,7 +2,6 @@ import 'package:digital_card_website/home/pages/devices_page.dart';
 import 'package:digital_card_website/home/pages/home_page.dart';
 import 'package:digital_card_website/home/pages/profiles_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Routes {
   static const String homePageRoute = "/home";
@@ -14,17 +13,39 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case homePageRoute:
-        return _createRoute(const HomePage());
+        return _NoTransitionEffectBuilder(
+          child: const HomePage(),
+          settings: settings,
+        );
       case devicesPageRoute:
-        return _createRoute(const DevicesPage());
+        return _NoTransitionEffectBuilder(
+          child: const DevicesPage(),
+          settings: settings,
+        );
       default:
-        return _createRoute(const ProfilesPage());
+        return _NoTransitionEffectBuilder(
+          child: const ProfilesPage(),
+          settings: settings,
+        );
     }
   }
+}
 
-  static PageRoute _createRoute(Widget child) {
-    return MaterialPageRoute(
-      builder: (_) => child,
-    );
+class _NoTransitionEffectBuilder extends PageRouteBuilder {
+  final Widget child;
+  _NoTransitionEffectBuilder({
+    required this.child,
+    required RouteSettings settings,
+  }) : super(
+          settings: settings,
+          pageBuilder: (_, __, ___) => child,
+          transitionDuration: Duration.zero,
+          reverseTransitionDuration: Duration.zero,
+        );
+  // No transition effect
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    return child;
   }
 }

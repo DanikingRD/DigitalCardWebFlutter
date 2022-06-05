@@ -1,3 +1,4 @@
+import 'package:digital_card_website/home/dashboard/components/header.dart';
 import 'package:digital_card_website/home/side_menu.dart';
 import 'package:digital_card_website/responsive.dart';
 import 'package:digital_card_website/widgets/local_navigator.dart';
@@ -18,10 +19,18 @@ class HomeScreenLayout extends StatelessWidget {
                 child: SideMenu(),
               ),
             },
-            const Expanded(
+            Expanded(
               flex: 5,
-              child: LocalNavigator(),
-            ),
+              child: Column(
+                children: const [
+                  Expanded(child: DashboardHeader()),
+                  Expanded(
+                    flex: 5,
+                    child: LocalNavigator(),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

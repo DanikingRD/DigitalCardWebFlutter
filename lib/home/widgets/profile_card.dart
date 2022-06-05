@@ -21,9 +21,13 @@ class ProfileCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            'assets/images/avatar.png',
-            height: 38,
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+            child: Image.asset(
+              'assets/images/avatar.png',
+              height: 50,
+              width: 50,
+            ),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(
