@@ -2,41 +2,40 @@ import 'package:digital_card_website/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
+  final VoidCallback onLogoutPressed;
   const ProfileCard({
     Key? key,
+    required this.onLogoutPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: defaultPadding),
-      padding: const EdgeInsets.symmetric(
-        horizontal: defaultPadding,
-        vertical: defaultPadding / 2,
-      ),
-      decoration: BoxDecoration(
-        color: kDashSecondaryColor,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.white10),
-      ),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-            child: Image.asset(
-              'assets/images/avatar.png',
-              height: 50,
-              width: 50,
-            ),
+    return Expanded(
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(0),
+        leading: const CircleAvatar(
+          backgroundImage: AssetImage('assets/images/avatar.png'),
+        ),
+        title: SelectableText(
+          'Luis de la Cruz',
+          style: TextStyle(fontSize: 14, color: kFontColorPallets[0]),
+        ),
+        subtitle: SelectableText(
+          'danikingrd@gmail.com',
+          style: TextStyle(fontSize: 12, color: kFontColorPallets[2]),
+        ),
+        trailing: IconButton(
+          hoverColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onPressed: onLogoutPressed,
+          icon: const Icon(
+            Icons.logout,
+            color: kDashDarkColor,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: defaultPadding / 2,
-            ),
-            child: Text('Luis de la Cruz'),
-          ),
-          const Icon(Icons.keyboard_arrow_down)
-        ],
+          tooltip: "Log Out",
+        ),
       ),
     );
   }

@@ -4,9 +4,12 @@ import 'package:digital_card_website/home/pages/profiles_page.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
+  static const String homeDisplayName = "Home";
   static const String homePageRoute = "/home";
   static const String devicesPageRoute = "/devices";
+  static const String devicesDisplayName = "Devices";
   static const String profilesPageRoute = "/profiles";
+  static const String profilesDisplayName = "Profiles";
   static const String appointmentsPageRoute = "/appointments";
   static const String connectionsPageRoute = "/connections";
 

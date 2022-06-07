@@ -1,3 +1,4 @@
+import 'package:digital_card_website/constants.dart';
 import 'package:digital_card_website/provider/dashboard_navigator_provider.dart';
 import 'package:digital_card_website/routes.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,9 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localNav = context.read<DashboardNavigatorProvider>();
+    final localNav = context.watch<DashboardNavigatorProvider>();
     return Drawer(
+      backgroundColor: kSideMenuBgColor,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -19,19 +21,37 @@ class SideMenu extends StatelessWidget {
               child: Text('Logo'),
             ),
             DrawerListTile(
-              onPress: () => localNav.push(Routes.homePageRoute),
+              onPress: () => localNav.push(
+                Routes.homePageRoute,
+                Routes.homeDisplayName,
+              ),
               icon: Icons.home,
-              title: 'Home',
+              title: Routes.homeDisplayName,
+            ),
+            const SizedBox(
+              height: 20,
             ),
             DrawerListTile(
-              onPress: () => localNav.push(Routes.devicesPageRoute),
+              onPress: () => localNav.push(
+                Routes.devicesPageRoute,
+                Routes.devicesDisplayName,
+              ),
               icon: Icons.credit_card,
-              title: 'Devices',
+              title: Routes.devicesDisplayName,
+            ),
+            const SizedBox(
+              height: 20,
             ),
             DrawerListTile(
-              onPress: () => localNav.push(Routes.profilesPageRoute),
+              onPress: () => localNav.push(
+                Routes.profilesPageRoute,
+                Routes.profilesDisplayName,
+              ),
               icon: Icons.people,
-              title: 'Profiles',
+              title: Routes.profilesDisplayName,
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),
@@ -53,16 +73,43 @@ class DrawerListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onPress,
-      horizontalTitleGap: 0.0,
-      leading: Icon(
-        icon,
-        color: Colors.black54,
-      ),
-      title: Text(
-        title,
-      ),
+    final localNav = context.read<DashboardNavigatorProvider>();
+    return Row(
+      children: [
+        Visibility(
+          visible: isActive(localNav),
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
+          child: Container(
+            color: kDashDarkColor,
+            width: 6,
+            height: 40,
+          ),
+        ),
+        Expanded(
+          child: ListTile(
+            onTap: onPress,
+            horizontalTitleGap: 0.0,
+            leading: Icon(
+              icon,
+              color: isActive(localNav) ? Colors.black : Colors.black54,
+            ),
+            title: Text(
+              title,
+              style: TextStyle(
+                color: isActive(localNav) ? Colors.black : kDashDarkColor,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
+  }
+
+  bool isActive(DashboardNavigatorProvider provider) {
+    return title == provider.activeRoute;
   }
 }

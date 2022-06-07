@@ -2,7 +2,6 @@ import 'package:digital_card_website/constants.dart';
 import 'package:digital_card_website/home/layout.dart';
 import 'package:digital_card_website/provider/dashboard_navigator_provider.dart';
 import 'package:digital_card_website/provider/menu_provider.dart';
-import 'package:digital_card_website/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +36,8 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        fontFamily: GoogleFonts.poppins().fontFamily,
+        textTheme: GoogleFonts.poppinsTextTheme(),
+        scaffoldBackgroundColor: kDashBgColor,
       ),
       home: const HomeScreenLayout(),
     );
