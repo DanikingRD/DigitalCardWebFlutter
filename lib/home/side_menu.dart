@@ -58,11 +58,10 @@ class DrawerListTile extends StatelessWidget {
       horizontalTitleGap: 0.0,
       leading: Icon(
         icon,
-        color: Colors.white54,
+        color: Colors.black54,
       ),
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white54),
       ),
     );
   }

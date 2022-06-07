@@ -35,14 +35,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        textTheme: GoogleFonts.poppinsTextTheme(
-          Theme.of(context).textTheme,
-        ).apply(
-          bodyColor: Colors.white,
-        ),
-        scaffoldBackgroundColor: kDashBgColor,
-        canvasColor: kDashSecondaryColor,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       home: const HomeScreenLayout(),
     );

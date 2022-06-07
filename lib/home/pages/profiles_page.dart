@@ -8,7 +8,6 @@ class ProfilesPage extends StatelessWidget {
     return const Center(
       child: Text(
         'ProfilesPage',
-        style: TextStyle(color: Colors.white, fontSize: 24),
       ),
     );
   }
