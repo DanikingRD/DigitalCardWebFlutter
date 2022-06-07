@@ -17,6 +17,7 @@ class DashboardPageContent extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const DashboardHeader(),
           const SelectableText(

@@ -1,6 +1,7 @@
 import 'package:digital_card_website/constants.dart';
 import 'package:digital_card_website/home/dashboard/components/today_text.dart';
 import 'package:digital_card_website/home/widgets/profile_card.dart';
+import 'package:digital_card_website/responsive.dart';
 import 'package:flutter/material.dart';
 
 class DashboardHeader extends StatelessWidget {
@@ -15,12 +16,14 @@ class DashboardHeader extends StatelessWidget {
         Row(
           children: [
             const TodayText(),
-            const Spacer(),
             const Spacer(
               flex: 3,
             ),
-            ProfileCard(
-              onLogoutPressed: () {},
+            SizedBox(
+              width: ResponsiveLayout.isDesktop(context) ? 300 : 100,
+              child: ProfileCard(
+                onLogoutPressed: () {},
+              ),
             ),
           ],
         ),

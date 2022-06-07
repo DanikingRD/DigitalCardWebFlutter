@@ -1,3 +1,4 @@
+import 'package:digital_card_website/home/widgets/insight_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -5,10 +6,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'HomePage',
-      ),
+    return Column(
+      children: [
+        const SizedBox(
+          height: 30,
+        ),
+        Row(
+          children: const [
+            SizedBox(
+              height: 200,
+              child: InsightCard(icon: Icons.credit_card),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
