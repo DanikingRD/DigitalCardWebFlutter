@@ -16,32 +16,32 @@ class SideMenu extends StatelessWidget {
       backgroundColor: kSideMenuBgColor,
       child: SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             DrawerHeader(
-              child: Text('Logo'),
+              child: Image.asset("assets/images/flutter_logo.png"),
             ),
-            SideMenuButton(
+            const SideMenuButton(
               route: Routes.homePageRoute,
               display: Routes.homeDisplayName,
               icon: Icons.home,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            SideMenuButton(
+            const SideMenuButton(
               route: Routes.devicesPageRoute,
               display: Routes.devicesDisplayName,
               icon: Icons.credit_card,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            SideMenuButton(
+            const SideMenuButton(
               route: Routes.profilesPageRoute,
               display: Routes.profilesDisplayName,
               icon: Icons.people,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],
