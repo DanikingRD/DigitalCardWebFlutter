@@ -7,12 +7,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
           height: 30,
         ),
         Wrap(
-          // TODO: fix wrap not working as a row
           children: const [
             InsightCard(
               icon: Icons.people,

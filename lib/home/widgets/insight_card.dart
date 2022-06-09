@@ -32,6 +32,7 @@ class InsightCard extends StatelessWidget {
         ],
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
