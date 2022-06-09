@@ -1,6 +1,7 @@
 import 'package:digital_card_website/authentication/reset_password_body.dart';
 import 'package:digital_card_website/backend/authentication.dart';
 import 'package:digital_card_website/constants.dart';
+import 'package:digital_card_website/routes.dart';
 
 import 'package:digital_card_website/three_bounce_loading_indicator.dart';
 import 'package:digital_card_website/util.dart';
@@ -67,14 +68,7 @@ class _LoginScreenState extends State<LoginScreen>
         setState(() {
           _errorMessage = null;
         });
-        showDialog(
-          context: context,
-          builder: (ctx) {
-            return const AlertDialog(
-              content: Text("Successfully logged in"),
-            );
-          },
-        );
+        Navigator.pushReplacementNamed(context, GlobalRoutes.userHomeRoute);
       },
       onError: (String? msg) {
         setState(() {
@@ -89,6 +83,8 @@ class _LoginScreenState extends State<LoginScreen>
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kDashBgColor,
+        elevation: 0.0,
         title: Row(
           children: [
             const Spacer(),

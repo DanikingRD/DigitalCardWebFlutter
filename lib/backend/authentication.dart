@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/scheduler.dart';
 
 class FirebaseAuthService {
   final FirebaseAuth _instance = FirebaseAuth.instance;
@@ -36,6 +37,22 @@ class FirebaseAuthService {
       }
     } on FirebaseAuthException catch (e) {
       if (onError != null) onError(e.message);
+    }
+  }
+
+  Future<void> logOut({
+    required VoidCallback? onSuccess,
+    required Function(String? message)? onError,
+  }) async {
+    try {
+      await _instance.signOut();
+      if (onSuccess != null) {
+        onSuccess();
+      }
+    } on FirebaseAuthException catch (e) {
+      if (onError != null) {
+        onError(e.message);
+      }
     }
   }
 }

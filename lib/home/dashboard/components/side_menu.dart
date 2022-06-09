@@ -21,24 +21,24 @@ class SideMenu extends StatelessWidget {
               child: Image.asset("assets/images/flutter_logo.png"),
             ),
             const SideMenuButton(
-              route: Routes.homePageRoute,
-              display: Routes.homeDisplayName,
+              route: LocalRoutes.insightsRoute,
+              display: LocalRoutes.insightsDisplayName,
               icon: Icons.home,
             ),
             const SizedBox(
               height: 20,
             ),
             const SideMenuButton(
-              route: Routes.devicesPageRoute,
-              display: Routes.devicesDisplayName,
+              route: LocalRoutes.devicesPageRoute,
+              display: LocalRoutes.devicesDisplayName,
               icon: Icons.credit_card,
             ),
             const SizedBox(
               height: 20,
             ),
             const SideMenuButton(
-              route: Routes.profilesPageRoute,
-              display: Routes.profilesDisplayName,
+              route: LocalRoutes.profilesPageRoute,
+              display: LocalRoutes.profilesDisplayName,
               icon: Icons.people,
             ),
             const SizedBox(

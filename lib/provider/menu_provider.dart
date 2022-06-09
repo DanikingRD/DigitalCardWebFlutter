@@ -3,7 +3,7 @@ import 'package:digital_card_website/routes.dart';
 import 'package:flutter/material.dart';
 
 class MenuProvider with ChangeNotifier {
-  String _activeRoute = Routes.homePageRoute;
+  String _activeRoute = LocalRoutes.insightsRoute;
   String? _hoveredRoute;
 
   void setActiveRoute(String route) {
@@ -23,15 +23,15 @@ class MenuProvider with ChangeNotifier {
 
   Widget getIconFor(String route) {
     switch (route) {
-      case Routes.homePageRoute:
+      case LocalRoutes.insightsRoute:
         return _icon(Icons.trending_up, route);
-      case Routes.devicesPageRoute:
+      case LocalRoutes.devicesPageRoute:
         return _icon(Icons.trending_up, route);
-      case Routes.profilesPageRoute:
+      case LocalRoutes.profilesPageRoute:
         return _icon(Icons.trending_up, route);
-      case Routes.appointmentsPageRoute:
+      case LocalRoutes.appointmentsPageRoute:
         return _icon(Icons.trending_up, route);
-      case Routes.connectionsPageRoute:
+      case LocalRoutes.connectionsPageRoute:
         return _icon(Icons.trending_up, route);
     }
     return Container();

@@ -38,8 +38,8 @@ class DashboardPageContent extends StatelessWidget {
           Expanded(
             child: Navigator(
               key: localNav.navigationKey,
-              initialRoute: Routes.homePageRoute,
-              onGenerateRoute: Routes.generateRoute,
+              initialRoute: LocalRoutes.insightsRoute,
+              onGenerateRoute: LocalRoutes.generateRoute,
             ),
           ),
         ],

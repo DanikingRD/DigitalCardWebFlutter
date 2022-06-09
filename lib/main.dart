@@ -1,7 +1,9 @@
+import 'package:digital_card_website/backend/authentication.dart';
 import 'package:digital_card_website/constants.dart';
 import 'package:digital_card_website/home/layout.dart';
 import 'package:digital_card_website/provider/dashboard_navigator_provider.dart';
 import 'package:digital_card_website/provider/menu_provider.dart';
+import 'package:digital_card_website/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,11 +17,14 @@ void main(List<String> args) async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<MenuProvider>(
           create: (_) => MenuProvider(),
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<DashboardNavigatorProvider>(
           create: (_) => DashboardNavigatorProvider(),
+        ),
+        Provider<FirebaseAuthService>(
+          create: (_) => FirebaseAuthService(),
         )
       ],
       child: const App(),
@@ -40,6 +45,7 @@ class App extends StatelessWidget {
         scaffoldBackgroundColor: kDashBgColor,
       ),
       home: const HomeScreenLayout(),
+      onGenerateRoute: GlobalRoutes.generateRoute,
     );
   }
 }
