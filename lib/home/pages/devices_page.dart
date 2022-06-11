@@ -1,5 +1,6 @@
-import 'package:data_table_2/data_table_2.dart';
+import 'package:digital_card_website/model/device.dart';
 import 'package:flutter/material.dart';
+import 'package:pluto_grid/pluto_grid.dart';
 
 class DevicesPage extends StatefulWidget {
   const DevicesPage({
@@ -11,79 +12,53 @@ class DevicesPage extends StatefulWidget {
 }
 
 class _DevicesPageState extends State<DevicesPage> {
+  static const List<String> _columns = ["Identifier", "Display Name"];
   late final List<DeviceModel> _devices;
-  static const List<String> _columns = ['ID', 'Device Type', 'Display Name'];
-  int _rowPerPage = PaginatedDataTable.defaultRowsPerPage;
+
   @override
   void initState() {
     super.initState();
-    _devices = [
-      DeviceModel('789098', 'Cling PVC Card', 'Daniel1'),
-      DeviceModel('542123', 'Cling Basic Card', 'Daniel2'),
-      DeviceModel('995846', 'Cling Steel Card', 'Daniel4'),
+    _devices = const [
+      DeviceModel(id: "94185985692", displayName: "Teacher"),
+      DeviceModel(id: "85494838943", displayName: "Employee")
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    return DataTableTheme(
-      data: DataTableThemeData(),
-      child: PaginatedDataTable2(
-        header: Text('My header'),
-        columns: getColumns(),
-        source: DevicesDTS(cells: getCells()),
-        onRowsPerPageChanged: (row) {
-          setState(() {
-            _rowPerPage = row!;
-          });
-        },
-        rowsPerPage: _rowPerPage,
-      ),
+    return PlutoGrid(
+      columns: getColumns(),
+      rows: [],
+      onLoaded: (PlutoGridOnLoadedEvent event) {
+        event.stateManager.setShowColumnFilter(true);
+      },
+      onChanged: (PlutoGridOnChangedEvent event) {
+        print(event);
+      },
+      configuration: const PlutoGridConfiguration(),
+      createFooter: (stateManager) {
+        stateManager.setPageSize(100, notify: false); // default 40
+        return PlutoPagination(stateManager);
+      },
     );
   }
 
-  List<DataCell> getCells() {
-    return _devices.map((e) {
-      return DataCell(Text(e.displayName));
+  // TODO: Fix exceptions
+  List<PlutoRow> getRows() {
+    return _devices.map((DeviceModel device) {
+      return PlutoRow(
+        cells: {},
+      );
     }).toList();
   }
 
-  List<DataColumn> getColumns() {
-    return _columns.map((String col) {
-      return DataColumn(label: Text(col));
+  List<PlutoColumn> getColumns() {
+    return _columns.map((String name) {
+      return PlutoColumn(
+        title: name,
+        field: name,
+        type: PlutoColumnType.text(),
+      );
     }).toList();
   }
-}
-
-class DeviceModel {
-  final String id;
-  final String deviceType;
-  final String displayName;
-
-  DeviceModel(this.id, this.deviceType, this.displayName);
-}
-
-class DevicesDTS extends DataTableSource {
-  final List<DataCell> cells;
-
-  DevicesDTS({
-    required this.cells,
-  });
-
-  @override
-  DataRow? getRow(int index) {
-    return DataRow.byIndex(
-      index: index,
-      cells: cells,
-    );
-  }
-
-  @override
-  bool get isRowCountApproximate => true;
-
-  @override
-  int get rowCount => 100;
-
-  @override
-  int get selectedRowCount => 0;
 }

@@ -17,7 +17,7 @@ class DrawerListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localNav = context.read<DashboardNavigatorProvider>();
+    final localNav = context.watch<DashboardNavigatorProvider>();
     if (isSmallScreen(context)) {
       return getIconButton(localNav);
     } else {
