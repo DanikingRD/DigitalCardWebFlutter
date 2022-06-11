@@ -55,4 +55,8 @@ class FirebaseAuthService {
       }
     }
   }
+
+  Stream<User?> authState() {
+    return _instance.authStateChanges();
+  }
 }

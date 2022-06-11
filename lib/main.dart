@@ -1,9 +1,11 @@
+import 'package:digital_card_website/authentication/auth_gateway.dart';
 import 'package:digital_card_website/backend/authentication.dart';
 import 'package:digital_card_website/constants.dart';
 import 'package:digital_card_website/home/layout.dart';
 import 'package:digital_card_website/provider/dashboard_navigator_provider.dart';
 import 'package:digital_card_website/provider/menu_provider.dart';
 import 'package:digital_card_website/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +27,11 @@ void main(List<String> args) async {
         ),
         Provider<FirebaseAuthService>(
           create: (_) => FirebaseAuthService(),
-        )
+        ),
+        StreamProvider<User?>(
+          create: (context) => context.read<FirebaseAuthService>().authState(),
+          initialData: null,
+        ),
       ],
       child: const App(),
     ),
@@ -44,7 +50,7 @@ class App extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(),
         scaffoldBackgroundColor: kDashBgColor,
       ),
-      home: const HomeScreenLayout(),
+      home: const AuthGateway(),
       onGenerateRoute: GlobalRoutes.generateRoute,
     );
   }

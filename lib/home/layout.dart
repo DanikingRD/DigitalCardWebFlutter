@@ -4,7 +4,9 @@ import 'package:digital_card_website/home/dashboard/dashboard_content.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenLayout extends StatelessWidget {
-  const HomeScreenLayout({Key? key}) : super(key: key);
+  const HomeScreenLayout({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
