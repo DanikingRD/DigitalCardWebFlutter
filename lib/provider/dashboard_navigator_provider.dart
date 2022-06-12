@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 
 class DashboardNavigatorProvider with ChangeNotifier {
   String activeRoute = LocalRoutes.insightsDisplayName;
-  final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
+  final navigationKey = GlobalKey<NavigatorState>();
   dynamic push(String route, String display) {
     activeRoute = display;
-    navigationKey.currentState!.pushReplacementNamed(route);
+    navigationKey.currentState!.pushNamed(route);
     notifyListeners();
   }
 }
