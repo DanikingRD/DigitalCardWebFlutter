@@ -3,23 +3,29 @@ import 'package:flutter/material.dart';
 
 class PrimaryTextField extends StatelessWidget {
   final TextEditingController? controller;
-  final String label;
+  final String? label;
   final FormFieldSetter<String>? onSaved;
   final FormFieldValidator<String>? validator;
   final bool hiddenText;
   final Widget? suffixIcon;
   final ValueChanged<String>? onUpdate;
   final ValueChanged<String>? onFieldSubmitted;
+  final String? initialValue;
+  final bool autoFocus;
+  final TextStyle? labelStyle;
   const PrimaryTextField({
     Key? key,
     this.controller,
-    required this.label,
     this.onSaved,
     this.validator,
     this.hiddenText = false,
     this.suffixIcon,
+    this.label,
     this.onUpdate,
     this.onFieldSubmitted,
+    this.initialValue,
+    this.autoFocus = true,
+    this.labelStyle,
   }) : super(key: key);
 
   @override
@@ -31,6 +37,8 @@ class PrimaryTextField extends StatelessWidget {
       ),
     );
     return TextFormField(
+      autofocus: autoFocus,
+      initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       cursorColor: Colors.black,
       cursorWidth: 1.0,
@@ -50,7 +58,11 @@ class PrimaryTextField extends StatelessWidget {
           fontSize: 12,
         ),
         labelText: label,
-        labelStyle: const TextStyle(color: kOutlineBorderColor, fontSize: 12),
+        labelStyle: labelStyle ??
+            const TextStyle(
+              color: kOutlineBorderColor,
+              fontSize: 12,
+            ),
         errorBorder: errorBorder,
         focusedBorder: errorBorder,
         focusedErrorBorder: errorBorder,
